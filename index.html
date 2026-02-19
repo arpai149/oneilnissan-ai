@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>O'Neil Nissan AI Widget</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; padding: 0; background: #0b0f19; color: #fff; }
+      .top { padding: 24px; background: #0b0f19; border-bottom: 1px solid rgba(255,255,255,.12); }
+      .top h1 { margin: 0; font-size: 18px; letter-spacing: .5px; }
+      .top p { margin: 8px 0 0; opacity: .8; }
+      .wrap { max-width: 900px; margin: 0 auto; padding: 16px; }
+      .card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 14px; padding: 16px; }
+      .row { display: grid; gap: 12px; grid-template-columns: 1fr; }
+      @media (min-width: 860px) { .row { grid-template-columns: 1fr 1fr; } }
+      label { font-size: 12px; opacity: .9; display: block; margin-bottom: 6px; }
+      input, select { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.08); color: #fff; }
+      button { margin-top: 12px; width: 100%; padding: 12px; border-radius: 12px; border: 0; background: #1e40af; color: #fff; font-weight: 600; cursor: pointer; }
+      button:hover { background: #1c3aa0; }
+      .result { margin-top: 12px; padding: 12px; border-radius: 12px; background: rgba(0,0,0,.3); border: 1px solid rgba(255,255,255,.14); }
+      .hint { margin-top: 12px; font-size: 12px; opacity: .75; }
+    </style>
+  </head>
+  <body>
+    <div class="top">
+      <div class="wrap">
+        <h1>O’Neil Nissan — AI Widget Ready</h1>
+        <p>Placeholder chat + ZIP-based payment calculator scaffold. Next step: connect AI + eLeads.</p>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="card">
+        <div class="row">
+          <div><label>Zip Code</label><input id="zip" placeholder="e.g. 19047" /></div>
+          <div><label>MSRP / Price ($)</label><input id="price" placeholder="e.g. 30000" /></div>
+          <div><label>Down Payment ($)</label><input id="down" placeholder="e.g. 2000" /></div>
+          <div><label>Retail Term (months)</label>
+            <select id="term"><option value="36">36</option><option value="48">48</option><option value="60" selected>60</option><option value="72">72</option></select>
+          </div>
+          <div><label>Estimated APR (%)</label><input id="apr" placeholder="e.g. 5.5" /></div>
+          <div><label>Doc Fee ($)</label><input id="doc" placeholder="e.g. 399" /></div>
+        </div>
+
+        <button onclick="calc()">Calculate Retail Payment</button>
+        <div class="result" id="out">Enter inputs and calculate.</div>
+        <div class="hint">This is a scaffold only. Production version will integrate real lender, tax, TTL and CRM logic.</div>
+      </div>
+    </div>
+
+    <script>
+      const taxByZipPrefix = {
+        "19": 0.06, "07": 0.06625, "08": 0.0 // example ZIP tax rates (PA, NJ, etc.)
+      };
+      function calc() {
+        const zip = document.getElementById("zip").value.trim();
+        const price = parseFloat(document.getElementById("price").value);
+        const down = parseFloat(document.getElementById("down").value || "0");
+        const term = parseInt(document.getElementById("term").value, 10);
+        const apr = parseFloat(document.getElementById("apr").value || "0");
+        const doc = parseFloat(document.getElementById("doc").value || "0");
+        if (!zip || isNaN(price) || isNaN(term)) {
+          document.getElementById("out").innerText = "Please enter ZIP, price, and term.";
+          return;
+        }
+        const tax = taxByZipPrefix[String(zip).slice(0,2)] ?? 0.06;
+        const taxable = price + doc - down;
+        const ttl = taxable * tax;
+        const principal = taxable + ttl;
+        const monthlyRate = (apr/100)/12;
+        const payment = monthlyRate === 0 ? principal/term : principal * (monthlyRate * Math.pow(1+monthlyRate, term)) / (Math.pow(1+monthlyRate, term) - 1);
+        document.getElementById("out").innerHTML = `Estimated Monthly: <b>$${payment.toFixed(2)}</b><br/>TTL (tax): $${ttl.toFixed(2)}<br/>Doc Fee: $${doc.toFixed(2)}<br/>APR: ${apr}% × ${term} mo`;
+      }
+    </script>
+  </body>
+</html>
