@@ -1,0 +1,4 @@
+import PageShell from '@/components/PageShell';
+import { pageMetadata } from '@/lib/site';
+export const metadata = pageMetadata('About O\'Neil Nissan', 'Learn about O\'Neil Nissan: family-owned values, transparent process, and customer-first service.', '/about');
+export default function Page() { return <PageShell title="About O'Neil Nissan" intro="We are family-owned, process-driven, and focused on speed-to-answer with transparent communication."><div className="grid grid-3"><div className="card"><h3>Transparent process</h3><p>Clear expectations and no surprise add-ons.</p></div><div className="card"><h3>Efficient operations</h3><p>Digital-first lead routing to shorten your journey.</p></div><div className="card"><h3>Customer-first culture</h3><p>Respectful service before and after the sale.</p></div></div></PageShell>; }
