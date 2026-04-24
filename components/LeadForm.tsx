@@ -48,7 +48,7 @@ export default function LeadForm({ source, showAppointment }: { source: string; 
       {showAppointment && <div className="full"><label htmlFor="appointmentTime">Preferred Appointment Time</label><input id="appointmentTime" name="appointmentTime" placeholder="Saturday at 11 AM" /></div>}
       <div className="full"><label htmlFor="message">Message</label><textarea id="message" rows={4} name="message" /></div>
       {error && <p className="full error" role="alert">{error}</p>}
-      <div className="full"><button className="btn btn-primary" type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit Lead'}</button></div>
+      <div className="full"><button className="btn btn-primary" type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Check Availability & Get My Best Next Step'}</button></div>
       <small className="full muted">By submitting, you agree to receive communications from O'Neil Nissan. Routing supports Supabase, n8n, and CRM integrations.</small>
     </form>
   );

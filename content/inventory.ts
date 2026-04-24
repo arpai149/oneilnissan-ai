@@ -12,10 +12,12 @@ export type Vehicle = {
 };
 
 export const vehicles: Vehicle[] = [
-  { id: 'n1', year: 2026, make: 'Nissan', model: 'Rogue', trim: 'SV AWD', type: 'new', price: '$34,980', payment: '$419/mo est.', imageAlt: 'Gray 2026 Nissan Rogue SV AWD at O\'Neil Nissan' },
-  { id: 'n2', year: 2026, make: 'Nissan', model: 'Sentra', trim: 'SR', type: 'new', price: '$27,490', payment: '$339/mo est.', imageAlt: 'Blue 2026 Nissan Sentra SR at O\'Neil Nissan' },
-  { id: 'u1', year: 2023, make: 'Nissan', model: 'Altima', trim: 'SL', type: 'used', price: '$23,995', payment: '$369/mo est.', mileage: '18,204 mi', imageAlt: 'Black 2023 Nissan Altima SL used at O\'Neil Nissan' },
-  { id: 'u2', year: 2022, make: 'Nissan', model: 'Frontier', trim: 'PRO-4X', type: 'used', price: '$34,250', payment: '$498/mo est.', mileage: '25,883 mi', imageAlt: 'White 2022 Nissan Frontier PRO-4X used at O\'Neil Nissan' }
+  { id: 'n1', year: 2026, make: 'Nissan', model: 'Rogue', trim: 'SV AWD', type: 'new', price: 'From the low $30Ks', payment: '', imageAlt: '2026 Nissan Rogue SV AWD at O\'Neil Nissan' },
+  { id: 'n2', year: 2026, make: 'Nissan', model: 'Rogue', trim: 'Dark Armor', type: 'new', price: 'Offer-ready SUV', payment: '', imageAlt: '2026 Nissan Rogue Dark Armor at O\'Neil Nissan' },
+  { id: 'n3', year: 2026, make: 'Nissan', model: 'Murano', trim: '', type: 'new', price: 'Premium comfort, strong April support', payment: '', imageAlt: '2026 Nissan Murano at O\'Neil Nissan' },
+  { id: 'n4', year: 2026, make: 'Nissan', model: 'Pathfinder', trim: '', type: 'new', price: 'Family SUV offer opportunity', payment: '', imageAlt: '2026 Nissan Pathfinder at O\'Neil Nissan' },
+  { id: 'n5', year: 2026, make: 'Nissan', model: 'Sentra', trim: 'SV', type: 'new', price: 'Efficient sedan value', payment: '', imageAlt: '2026 Nissan Sentra SV at O\'Neil Nissan' },
+  { id: 'n6', year: 2026, make: 'Nissan', model: 'Frontier', trim: 'SV / PRO-4X', type: 'new', price: 'Truck offer opportunity', payment: '', imageAlt: '2026 Nissan Frontier SV and PRO-4X at O\'Neil Nissan' }
 ];
 
 export const modelSeo = [
