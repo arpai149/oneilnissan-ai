@@ -6,6 +6,7 @@ import { site } from '@/lib/site';
 import SeoJsonLd from '@/components/SeoJsonLd';
 import Analytics from '@/components/Analytics';
 import AiEntryCta from '@/components/AiEntryCta';
+import AiAssistantLauncher from '@/components/AiAssistantLauncher';
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main>{children}</main>
         <AiEntryCta />
+        <AiAssistantLauncher />
         <Footer />
       </body>
     </html>
