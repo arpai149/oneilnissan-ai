@@ -1,33 +1,67 @@
 export type InventoryItem = {
   id: string;
-  model: 'Rogue' | 'Sentra' | 'Murano';
+  year: number;
+  make: 'Nissan';
+  model: 'Rogue' | 'Sentra' | 'Murano' | 'Pathfinder' | 'Frontier';
   trim: string;
-  price: string;
-  ctaLabel: string;
+  type: 'new' | 'used';
+  priceLabel: string;
+  offerLabel: string;
+  priorityReason: string;
+  ctaLabel: 'Check Availability';
+  modelSlug: string;
+  imageAlt: string;
 };
 
-export const inventoryByModel: Record<InventoryItem['model'], InventoryItem[]> = {
-  Rogue: [
-    { id: 'rogue-sv-fwd', model: 'Rogue', trim: 'SV FWD', price: '$33,240', ctaLabel: 'Check Availability' },
-    { id: 'rogue-sv-awd', model: 'Rogue', trim: 'SV AWD', price: '$33,980', ctaLabel: 'Check Availability' },
-    { id: 'rogue-dark-armor-fwd', model: 'Rogue', trim: 'Dark Armor FWD', price: '$35,120', ctaLabel: 'Check Availability' },
-    { id: 'rogue-dark-armor-awd', model: 'Rogue', trim: 'Dark Armor AWD', price: '$35,890', ctaLabel: 'Check Availability' },
-    { id: 'rogue-platinum-fwd', model: 'Rogue', trim: 'Platinum FWD', price: '$45,110', ctaLabel: 'Check Availability' },
-    { id: 'rogue-platinum-awd', model: 'Rogue', trim: 'Platinum AWD', price: '$45,860', ctaLabel: 'Check Availability' },
-  ],
-  Sentra: [
-    { id: 'sentra-s', model: 'Sentra', trim: 'S', price: '$22,990', ctaLabel: 'Check Availability' },
-    { id: 'sentra-sv', model: 'Sentra', trim: 'SV', price: '$24,640', ctaLabel: 'Check Availability' },
-    { id: 'sentra-sr', model: 'Sentra', trim: 'SR Premium', price: '$27,480', ctaLabel: 'Check Availability' },
-  ],
-  Murano: [
-    { id: 'murano-sv', model: 'Murano', trim: 'SV AWD', price: '$39,850', ctaLabel: 'Check Availability' },
-    { id: 'murano-sl', model: 'Murano', trim: 'SL AWD', price: '$44,320', ctaLabel: 'Check Availability' },
-    { id: 'murano-platinum', model: 'Murano', trim: 'Platinum AWD', price: '$48,990', ctaLabel: 'Check Availability' },
-  ],
-};
+const compliantOffer = 'Available on select models for qualified buyers; see dealer for details.';
 
-export const vehicles: InventoryItem[] = Object.values(inventoryByModel).flat();
+export const vehicles: InventoryItem[] = [
+  {
+    id: '26-rogue-sv-awd-1', year: 2026, make: 'Nissan', model: 'Rogue', trim: 'SV AWD', type: 'new',
+    priceLabel: '$33,980 MSRP', offerLabel: compliantOffer, priorityReason: 'Top April family SUV demand with strong all-weather utility.',
+    ctaLabel: 'Check Availability', modelSlug: 'rogue', imageAlt: '2026 Nissan Rogue SV AWD parked at O\'Neil Nissan'
+  },
+  {
+    id: '26-rogue-dark-armor-1', year: 2026, make: 'Nissan', model: 'Rogue', trim: 'Dark Armor', type: 'new',
+    priceLabel: '$35,890 MSRP', offerLabel: compliantOffer, priorityReason: 'High-interest appearance package arriving in limited batches.',
+    ctaLabel: 'Check Availability', modelSlug: 'rogue', imageAlt: '2026 Nissan Rogue Dark Armor edition in black'
+  },
+  {
+    id: '26-rogue-platinum-1', year: 2026, make: 'Nissan', model: 'Rogue', trim: 'Platinum AWD', type: 'new',
+    priceLabel: '$45,860 MSRP', offerLabel: compliantOffer, priorityReason: 'Premium trim shoppers are booking appointments quickly.',
+    ctaLabel: 'Check Availability', modelSlug: 'rogue', imageAlt: '2026 Nissan Rogue Platinum AWD premium trim'
+  },
+  {
+    id: '26-sentra-sv-1', year: 2026, make: 'Nissan', model: 'Sentra', trim: 'SV', type: 'new',
+    priceLabel: '$24,640 MSRP', offerLabel: compliantOffer, priorityReason: 'Value-focused commuters continue to prioritize Sentra inventory.',
+    ctaLabel: 'Check Availability', modelSlug: 'sentra', imageAlt: '2026 Nissan Sentra SV exterior view'
+  },
+  {
+    id: '26-murano-sl-1', year: 2026, make: 'Nissan', model: 'Murano', trim: 'SL AWD', type: 'new',
+    priceLabel: '$44,320 MSRP', offerLabel: compliantOffer, priorityReason: 'Mid-size crossover demand remains strong among upgrade buyers.',
+    ctaLabel: 'Check Availability', modelSlug: 'murano', imageAlt: '2026 Nissan Murano SL AWD in metallic gray'
+  },
+  {
+    id: '26-pathfinder-sv-1', year: 2026, make: 'Nissan', model: 'Pathfinder', trim: 'SV', type: 'new',
+    priceLabel: '$41,990 MSRP', offerLabel: compliantOffer, priorityReason: '3-row SUV inquiries are accelerating ahead of summer travel season.',
+    ctaLabel: 'Check Availability', modelSlug: 'pathfinder', imageAlt: '2026 Nissan Pathfinder SV front angle'
+  },
+  {
+    id: '26-pathfinder-sl-1', year: 2026, make: 'Nissan', model: 'Pathfinder', trim: 'SL', type: 'new',
+    priceLabel: '$46,450 MSRP', offerLabel: compliantOffer, priorityReason: 'Higher-content Pathfinder trims have limited lot time once listed.',
+    ctaLabel: 'Check Availability', modelSlug: 'pathfinder', imageAlt: '2026 Nissan Pathfinder SL side profile'
+  },
+  {
+    id: '26-frontier-sv-1', year: 2026, make: 'Nissan', model: 'Frontier', trim: 'SV', type: 'new',
+    priceLabel: '$36,210 MSRP', offerLabel: compliantOffer, priorityReason: 'Truck shoppers are cross-comparing inventory and acting quickly.',
+    ctaLabel: 'Check Availability', modelSlug: 'frontier', imageAlt: '2026 Nissan Frontier SV crew cab'
+  },
+  {
+    id: '26-frontier-pro4x-1', year: 2026, make: 'Nissan', model: 'Frontier', trim: 'PRO-4X', type: 'new',
+    priceLabel: '$42,780 MSRP', offerLabel: compliantOffer, priorityReason: 'Off-road trims are among the fastest-turning units this month.',
+    ctaLabel: 'Check Availability', modelSlug: 'frontier', imageAlt: '2026 Nissan Frontier PRO-4X in red'
+  },
+];
 
 export const modelSeo = [
   { slug: 'rogue', name: 'Nissan Rogue' },
