@@ -4,8 +4,7 @@ export const site = {
   dealershipName: "O'Neil Nissan",
   brandName: "O'Neil Nissan AI",
   url: 'https://oneilnissan.ai',
-  // Centralized main sales line placeholder; replace with verified store number when available.
-  phone: '(215) 555-0134',
+  phone: '215-674-9300',
   email: 'sales@oneilnissan.ai',
   address: '849 Street Rd, Warminster, PA 18974',
 };

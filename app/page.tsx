@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import CtaStrip from '@/components/CtaStrip';
 import InventoryGrid from '@/components/InventoryGrid';
 import LeadForm from '@/components/LeadForm';
@@ -12,24 +11,18 @@ export default function HomePage() {
     <>
       <section className="hero">
         <div className="container">
-          <h1>Buy your next Nissan with clarity, speed, and zero hidden nonsense.</h1>
-          <p>At {site.dealershipName}, our AI-enhanced process gets you from browsing to appointment with less back-and-forth and faster answers.</p>
+          <h1>New Nissan Offers, Transparent Pricing, Faster Answers.</h1>
+          <p>Shop {site.dealershipName} inventory with an AI-assisted process built to get you from browsing to appointment faster — with clear pricing and no hidden nonsense.</p>
           <CtaStrip />
         </div>
       </section>
 
       <section className="container">
-        <h2>Built for how people actually shop</h2>
-        <div className="grid grid-3">
-          <article className="card"><h3>Payment-first</h3><p>Get finance paths and realistic monthly payment options early.</p><Link className="btn btn-primary" href="/finance">Get Pre-Approved</Link></article>
-          <article className="card"><h3>Trade-first</h3><p>See how your current vehicle impacts your next deal.</p><Link className="btn btn-primary" href="/trade">Get Trade Value</Link></article>
-          <article className="card"><h3>Appointment-ready</h3><p>Reserve a test drive and show up with a focused plan.</p><Link className="btn btn-primary" href="/schedule-test-drive">Schedule Test Drive</Link></article>
-        </div>
+        <p className="card">April Nissan offers available on select Rogue, Murano, Pathfinder, Frontier, and Sentra models for qualified buyers. Availability and eligibility vary. See dealer for details.</p>
       </section>
 
       <section className="container">
-        <h2>Featured inventory</h2>
-        <p>Inventory cards are structured for live feed replacement and VDP expansion while remaining conversion-ready today.</p>
+        <h2>Offer-ready Nissan models</h2>
         <InventoryGrid />
       </section>
 
@@ -43,8 +36,9 @@ export default function HomePage() {
       </section>
 
       <section className="container">
-        <h2>Start your request now</h2>
+        <h2>Get a Fast O&apos;Neil Nissan Response</h2>
         <LeadForm source="homepage" showAppointment />
+        <p className="muted">Family-owned. Transparent pricing. No hidden nonsense. A real O&apos;Neil Nissan team member follows up.</p>
       </section>
 
       <SeoJsonLd data={{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
