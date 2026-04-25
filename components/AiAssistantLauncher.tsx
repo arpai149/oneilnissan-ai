@@ -63,13 +63,13 @@ export default function AiAssistantLauncher() {
     };
 
     try {
-      const res = await fetch('/api/leads', {
+      const res = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('Unable to submit right now. Please call us for immediate help.');
-      trackEvent('form_submit', { source: 'ai-assistant-modal' });
+      trackEvent('lead_submit', { source: 'ai-assistant-modal' });
       setSubmitted(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Submission failed.');
@@ -149,8 +149,8 @@ export default function AiAssistantLauncher() {
                 </div>
               ) : (
                 <div className="full success">
-                  <p>Great — we’ve got your request. Next best step: reserve your test drive.</p>
-                  <Link className="btn btn-primary" href="/schedule-test-drive" onClick={closeModal}>Schedule Appointment</Link>
+                  <p>Great — we’ve got your request. Do you want to stop in today or tomorrow?</p>
+                  <Link className="btn btn-primary" href="/schedule-test-drive" onClick={() => { trackEvent('appointment_click', { source: 'ai-assistant-modal' }); closeModal(); }}>Schedule Appointment</Link>
                 </div>
               )}
             </form>

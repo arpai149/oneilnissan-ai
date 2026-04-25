@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import InventoryGrid from '@/components/InventoryGrid';
+import HeroConversionCtas from '@/components/HeroConversionCtas';
 import LeadForm from '@/components/LeadForm';
 import { pageMetadata } from '@/lib/site';
 import SeoJsonLd from '@/components/SeoJsonLd';
@@ -13,10 +13,7 @@ export default function HomePage() {
         <div className="container">
           <h1>0% APR + Up to $3,500 Savings on New Nissan Rogue</h1>
           <p>Shop real inventory and lock your vehicle today.</p>
-          <div className="hero-cta-row">
-            <Link className="btn btn-primary" href="/models/rogue">Browse Rogue Inventory</Link>
-            <Link className="btn btn-secondary" href="/finance">Get My Payment</Link>
-          </div>
+          <HeroConversionCtas />
         </div>
       </section>
 

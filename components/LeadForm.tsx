@@ -17,10 +17,10 @@ export default function LeadForm({ source, showAppointment }: { source: string; 
 
     const form = new FormData(e.currentTarget);
     const payload = Object.fromEntries(form.entries());
-    trackEvent('form_submit', { source });
+    trackEvent('lead_submit', { source });
 
     try {
-      const res = await fetch('/api/leads', {
+      const res = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...payload, source })
@@ -29,7 +29,7 @@ export default function LeadForm({ source, showAppointment }: { source: string; 
         const response = await res.json().catch(() => ({ error: 'Unable to submit right now.' }));
         throw new Error(response.error ?? 'Unable to submit right now.');
       }
-      trackEvent('lead_confirmation', { source });
+      trackEvent('appointment_click', { source });
       router.push('/thank-you');
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : 'Submission failed. Please try again or call us.');
@@ -49,7 +49,7 @@ export default function LeadForm({ source, showAppointment }: { source: string; 
       <div className="full"><label htmlFor="message">Message</label><textarea id="message" rows={4} name="message" /></div>
       {error && <p className="full error" role="alert">{error}</p>}
       <div className="full"><button className="btn btn-primary" type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit Lead'}</button></div>
-      <small className="full muted">By submitting, you agree to receive communications from O'Neil Nissan. Routing supports Supabase, n8n, and CRM integrations.</small>
+      <small className="full muted">By submitting, you agree to receive communications from O'Neil Nissan. We will respond quickly—do you want to stop in today or tomorrow?</small>
     </form>
   );
 }
