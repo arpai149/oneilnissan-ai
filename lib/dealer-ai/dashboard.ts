@@ -1,4 +1,5 @@
-import { mockLeads, type DealerLead } from '@/lib/dealer-ai/mockLeads';
+import { mockLeads } from '@/lib/dealer-ai/mockLeads';
+import { type DealerLead } from '@/lib/dealer-ai/types';
 
 const riskOldHours = 72;
 
@@ -11,14 +12,14 @@ function computeRisk(lead: DealerLead) {
 }
 
 export async function getDealerAiDashboard() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
   let connection = 'not_configured';
   let leads: DealerLead[] = mockLeads;
   let error: string | null = null;
 
   if (url && key) {
-    const res = await fetch(`${url}/rest/v1/leads?select=id,name,email,phone,source,stage,created_at,last_contact_at&limit=100&order=created_at.desc`, {
+    const res = await fetch(`${url}/rest/v1/leads?select=id,name,email,phone,vehicle,message,source,status,created_at,last_contact_at&limit=100&order=created_at.desc`, {
       headers: { apikey: key, Authorization: `Bearer ${key}` },
       cache: 'no-store'
     });
@@ -37,7 +38,7 @@ export async function getDealerAiDashboard() {
   const totals = {
     totalLeads: scored.length,
     highRiskLeads: scored.filter((lead) => lead.risk.needsAttention).length,
-    newLeads: scored.filter((lead) => lead.stage === 'new').length
+    newLeads: scored.filter((lead) => lead.status === 'new').length
   };
 
   return {
