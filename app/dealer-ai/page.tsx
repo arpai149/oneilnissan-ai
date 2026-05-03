@@ -28,7 +28,7 @@ export default async function DealerAiPage() {
               {data.leads.map((lead: any) => (
                 <tr key={lead.id} style={{ borderTop: '1px solid #dbe6f8' }}>
                   <td style={{ padding: '8px 0' }}>{lead.name}<br /><small className="muted">{lead.email}</small></td>
-                  <td>{lead.stage}</td>
+                  <td>{lead.status}</td>
                   <td>{lead.source}</td>
                   <td>{lead.risk.needsAttention ? '⚠️ Yes' : '✅ No'}</td>
                 </tr>
